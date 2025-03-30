@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> &raquo; Pesquisa Mercado</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Cabeçalho -->
+<header class="custom-header">
+  <div class="logo-container">
+    <img src="https://www.viaplaceholder.200x200" alt="" />
+  </div>
+</header>
+
+<style>
+  /* ======= HEADER ======= */
+  .custom-header {
+    background-color: #fff; 
+    text-align: center;
+    margin: -10px;
+    border-bottom: 1px solid #DDDDDDDD; 
+  }
+  .logo-container {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .logo-container img {
+    max-width: 138px;
+    margin: 10px auto;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .custom-header { }
+    .logo-container { max-width: 140px; }
+    .logo-container img { max-width: 100%; }
+  }
+  /* ======= FORM STYLES ======= */
+  .main-container {
+    background-color: #f5f3f300;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+  .form-container {
+    background: #fff;
+    padding: 60px;
+    border-radius: 27px;
+    box-shadow: 1px 4px 8px rgba(0,0,0,0.3);
+    max-width: 767px;
+    width: 100%;
+    text-align: center;
+  }
+  h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 33px;
+    font-size: 24px;
+    background: linear-gradient(to right, #2A2A2A 30%, #7C7C7C 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p {
+    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.4em;
+  }
+  .option, .group-option {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    text-align: left;
+  }
+  .option.active, .group-option.active {
+    background-color: #d4d0d0;
+    border: 2px solid #000;
+    font-weight: 500;
+  }
+  .option span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-weight: bold;
+    background-color: #F3F3F3;
+  }
+  .option.active span {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+  .option input[type="text"] {
+    margin-left: 10px;
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    color: #000;
+  }
+  .group-container {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .group-container p {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+  .radio-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+  }
+  .radio-option {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+  }
+  .radio-option input[type="radio"] {
+    display: none;
+  }
+  .radio-option span {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background-color: #d4d0d0;
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .radio-option input[type="radio"]:checked + span {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    font-weight: 500;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+  .buttons a,
+  .buttons button {
+    text-decoration: none;
+    padding: 22px 57px;
+    border-radius: 16px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .buttons a {
+    color: #000;
+    font-weight: 400;
+    text-decoration: underline;
+    background: transparent;
+  }
+  .buttons button {
+    background: linear-gradient(90deg, #FDB438, #F37301);
+    color: #fff;
+    margin-left: auto;
+  }
+  .buttons button:hover {
+    background: linear-gradient(90deg, #FDA020, #F38901);
+    color: #fff;
+  }
+  .buttons.final-screen-buttons {
+    justify-content: center;
+  }
+  .buttons.final-screen-buttons button {
+    margin: 0 auto;
+  }
+  .rating-scale {
+    border: 1px solid #000;
+    padding: 10px;
+    background: #D9D9D9;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .rating-scale label {
+    display: inline-block;
+    position: relative;
+  }
+  .rating-scale label input[type="radio"] {
+    display: none;
+  }
+  .rating-scale label span {
+    display: inline-block;
+    padding: 12px 16px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 40px;
+    text-align: center;
+  }
+  .rating-scale label input[type="radio"]:checked + span {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    font-weight: 600;
+  }
+  textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+  .final-screen {
+    border-radius: 12px;
+  }
+  .final-screen h2 {
+    margin-bottom: 42px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .final-screen p {
+    color: #2A2A2A;
+    margin-bottom: 2px;
+    font-size: 18px;
+  }
+  .error-message {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  /* Estilo para a tela de email */
+  .email-screen {
+    display: flex;
+    flex-direction: column;
+    width: 524px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .email-screen input[type="email"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .email-screen {
+      max-width: 100%; 
+    }
+    .main-container {
+      margin-top: 80px; 
+    }
+    .form-container { 
+      padding: 30px; 
+      border-radius: 16px; 
+      max-width: 95%; 
+      text-align: left; 
+    }
+    h2 { 
+      font-size: 16px; 
+      text-align: left; 
+    }
+    .option { 
+      max-width: 342px; 
+      height: 64px; 
+      border-radius: 10px; 
+      font-size: 12px; 
+      line-height: 16px; 
+    }
+    .option input[type="text"] { 
+      font-size: 14px; 
+    }
+    .option span { 
+      width: 24px; 
+      height: 24px; 
+      margin-right: 8px; 
+      font-size: 14px; 
+    }
+    .buttons a, .buttons button { 
+      padding: 15px 30px; 
+      font-size: 18px; 
+    }
+    .rating-scale { 
+      display: block; 
+    }
+    .rating-scale label span { 
+      font-size: 18px; 
+      padding: 8px 12px; 
+      width: 46px; 
+      height: 46px; 
+      margin: 8px; 
+    }
+  }
+</style>
+
+<div class="main-container">
+  <div class="form-container">
+      <h2 id="question"></h2>
+      <div id="options"></div>
+      <div id="error-message" class="error-message"></div>
+      <div class="buttons"></div>
+  </div>
+</div>
+
+<script>
+  // Declaração das variáveis iniciais
+  var respostas = {};
+  var emailCollected = false;
+  let questionsFlow = []; // Fluxo que será definido após coletar o email
+  let currentQuestion = 0;
+
+  // Declaração dos fluxos de perguntas
+  const questionsSim = [
+    { question: "Você já comprou um Fotolivro?", options: ["Sim", "Não"] },
+    { question: "Em qual empresa você fez a compra?", options: ["Phooto", "Nicephootos", "Foto Registro", "Dreambooks", "Outra"] },
+    { question: "Qual foi o modelo do seu Fotolivro?", input: true },
+    { 
+      question: "O que achou da sua compra?", 
+      group: true,
+      subquestions: [
+         { label: "Qualidade", options: ["Bom", "Ruim", "Excelente"] },
+         { label: "Preço", options: ["Bom", "Ruim", "Excelente"] },
+         { label: "Entrega", options: ["Bom", "Ruim", "Excelente"] },
+         { label: "Experiência para montar o projeto", options: ["Bom", "Ruim", "Excelente"] }
+      ]
+    },
+    { question: "O que motivou a criar um Fotolivro? (Escolha a opção mais relevante)", options: ["Presente para alguém especial", "Recordação de uma viagem", "Álbum de casamento ou evento especial", "Para guardar memórias da família", "Outro"] },
+    { question: "O que mais influencia sua decisão de compra de um Fotolivro? (Escolha até 2 opções)", options: ["Preço acessível", "Qualidade do material", "Facilidade para montar o Fotolivro", "Indicação de amigos ou redes sociais", "Outro"], multiple: true, maxSelect: 2 },
+    { question: "O que acha de um item para guardar o seu Fotolivro? Uma box que, além de proteger seu Fotolivro, também pode ser usada como item de decoração. Qual o seu nível de interesse nessa novidade? (De 0 a 10)", scale: true },
+    { question: "Com que frequência você tira fotos?", options: ["Diariamente", "Semanalmente", "Mensalmente", "Apenas em ocasiões especiais"] },
+    { question: "Quais tipos de itens personalizados você gostaria de criar para presentear, decorar ou guardar memórias? (Marque quantos quiser)", options: ["Albúm para colocar as fotos 10x15", "Porta Retratos", "Caixa para guardar fotos", "Agenda ou planner", "Garrafas Personalizadas", "Roupas e Acessórios (bonés, moletons, bolsas etc.)", "Outro"], multiple: true },
+    { finalScreen: true }
+  ];
+
+  const questionsNao_Sim = [
+    { question: "Você já comprou um Fotolivro?", options: ["Sim", "Não"] },
+    { question: "Você teria interesse em adquirir um?", options: ["Sim", "Não"] },
+    {
+      question: "O que te motivaria a comprar um Fotolivro? (Escolha até 2 opções)",
+      options: ["Presente para alguém especial", "Recordação de uma viagem", "Álbum de casamento ou evento especial", "Para guardar memórias da família", "Outro"],
+      multiple: true,
+      maxSelect: 2
+    },
+    { question: "Se você fosse adquirir um Fotolivro hoje, em qual empresa compraria?", options: ["Phooto", "Nicephootos", "Foto Registro", "Dreambooks", "Outra"] },
+    { question: "O que acha de um item para guardar o seu Fotolivro? Uma box que, além de proteger seu Fotolivro, também pode ser usada como item de decoração. Qual o seu nível de interesse nessa novidade? (De 0 a 10)", scale: true },
+    { question: "Quais tipos de itens personalizados você gostaria de criar para presentear, decorar ou guardar memórias? (Marque quantos quiser)", options: ["Albúm para colocar as fotos 10x15", "Porta Retratos", "Caixa para guardar fotos", "Agenda ou planner", "Garrafas Personalizadas", "Roupas e Acessórios (bonés, moletons, bolsas etc.)", "Outro"], multiple: true },
+    { finalScreen: true }
+  ];
+
+  const questionsNao_Nao = [
+    { question: "Você já comprou um Fotolivro?", options: ["Sim", "Não"] },
+    { question: "Você teria interesse em adquirir um?", options: ["Sim", "Não"] },
+    { question: "Quais tipos de itens personalizados você gostaria de criar para presentear, decorar ou guardar memórias? (Marque quantos quiser)", options: ["Albúm para colocar as fotos 10x15", "Porta Retratos", "Caixa para guardar fotos", "Agenda ou planner", "Garrafas Personalizadas", "Roupas e Acessórios (bonés, moletons, bolsas etc.)", "Outro"], multiple: true },
+    { finalScreen: true }
+  ];
+
+  // Função auxiliar para obter o email da URL
+  function getEmailFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('email');
+  }
+
+  // Função para renderizar a tela de email (verifica se o parâmetro existe)
+  function renderEmailScreen() {
+    var emailFromUrl = getEmailFromUrl();
+    if(emailFromUrl) {
+      respostas.email = emailFromUrl;
+      emailCollected = true;
+      // Define o fluxo padrão para quem comprou
+      questionsFlow = questionsSim.slice();
+      currentQuestion = 0;
+      renderQuestion();
+      return;
+    }
+    var questionEl = document.getElementById("question");
+    var optionsContainer = document.getElementById("options");
+    var errorMessageEl = document.getElementById("error-message");
+    var buttonsContainer = document.querySelector(".buttons");
+
+    questionEl.innerText = "Por favor, informe seu email:";
+    optionsContainer.innerHTML = "";
+    errorMessageEl.innerText = "";
+    buttonsContainer.innerHTML = "";
+
+    var emailInput = document.createElement("input");
+    emailInput.type = "email";
+    emailInput.id = "emailInput";
+    emailInput.placeholder = "Digite seu email";
+    emailInput.className = "email-screen";
+    optionsContainer.appendChild(emailInput);
+
+    var continueButton = document.createElement("button");
+    continueButton.innerText = "Continuar →";
+    continueButton.onclick = function() {
+      var email = document.getElementById("emailInput").value;
+      if (email.trim() === "") {
+        errorMessageEl.innerText = "Por favor, informe seu email.";
+        return;
+      }
+      respostas.email = email;
+      emailCollected = true;
+      questionsFlow = questionsSim.slice();
+      currentQuestion = 0;
+      renderQuestion();
+    };
+    buttonsContainer.appendChild(continueButton);
+  }
+
+  // Função para renderizar as perguntas
+  function renderQuestion() {
+    if (!emailCollected) {
+      renderEmailScreen();
+      return;
+    }
+
+    var q = questionsFlow[currentQuestion];
+    var questionEl = document.getElementById("question");
+    var optionsContainer = document.getElementById("options");
+    var errorMessageEl = document.getElementById("error-message");
+    var buttonsContainer = document.querySelector(".buttons");
+
+    optionsContainer.innerHTML = "";
+    errorMessageEl.innerText = "";
+    buttonsContainer.innerHTML = "";
+    buttonsContainer.classList.remove("final-screen-buttons");
+
+    if (q.finalScreen) {
+      questionEl.innerText = "";
+      optionsContainer.innerHTML = `
+        <div class="final-screen">
+          <h2>Obrigado por responder essa pesquisa!</h2>
+          <p>
+            Você acabou de ganhar <strong>R$ 50,00</strong> em créditos no site da Phooto para utilizar em compras a partir de <strong>R$ 100,00</strong>.<br><br>
+            Os créditos estarão disponíveis em até 2 dias úteis, confira acessando a área <strong>Minha Conta</strong> na sessão "Meus Créditos".
+          </p>
+        </div>
+      `;
+      buttonsContainer.classList.add("final-screen-buttons");
+      buttonsContainer.innerHTML = `<button onclick="redirectToOffers()">Conferir Ofertas Exclusivas</button>`;
+      return;
+    }
+
+    questionEl.innerText = q.question;
+
+    if (q.options) {
+      q.options.forEach(function(opt, idx) {
+        var div = document.createElement("div");
+        div.className = "option";
+        div.onclick = function() { surveySelectOption(div); };
+        div.innerHTML = `<span>${String.fromCharCode(65 + idx)}</span> ${opt}`;
+        if (opt === "Outra" || opt === "Outro") {
+          div.innerHTML += `<input type="text" placeholder=" (escreva sua resposta)">`;
+        }
+        optionsContainer.appendChild(div);
+      });
+    } else if (q.input) {
+      optionsContainer.innerHTML = `<textarea rows="4" placeholder="Digite sua resposta aqui..."></textarea>`;
+    } else if (q.scale) {
+      var scaleDiv = document.createElement("div");
+      scaleDiv.className = "rating-scale";
+      for (let i = 0; i <= 10; i++) {
+        var label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="interestScale" value="${i}" /><span>${i}</span>`;
+        scaleDiv.appendChild(label);
+      }
+      optionsContainer.appendChild(scaleDiv);
+    } else if (q.group) {
+      q.subquestions.forEach(function(sq, index) {
+        var groupContainer = document.createElement("div");
+        groupContainer.className = "group-container";
+        groupContainer.innerHTML = `<p>${sq.label}:</p>`;
+        var radioOptionsDiv = document.createElement("div");
+        radioOptionsDiv.className = "radio-options";
+        sq.options.forEach(function(op) {
+          radioOptionsDiv.innerHTML += `<label class="radio-option"><input type="radio" name="group_${index}" value="${op}"><span>${op}</span></label>`;
+        });
+        groupContainer.appendChild(radioOptionsDiv);
+        optionsContainer.appendChild(groupContainer);
+      });
+    }
+
+    if (currentQuestion > 0) {
+      buttonsContainer.innerHTML += `<a href="#" onclick="prevQuestion()">Voltar</a>`;
+    }
+    buttonsContainer.innerHTML += `<button onclick="nextQuestion()">Continuar →</button>`;
+  }
+
+  function surveySelectOption(el) {
+    var q = questionsFlow[currentQuestion];
+    if (q.multiple) {
+      var selectedOptions = document.querySelectorAll("#options .option.active");
+      if (!el.classList.contains("active") && selectedOptions.length >= q.maxSelect) {
+        return;
+      }
+      el.classList.toggle("active");
+    } else {
+      document.querySelectorAll(".option").forEach(function(opt) { opt.classList.remove("active"); });
+      el.classList.add("active");
+    }
+    document.getElementById("error-message").innerText = "";
+  }
+
+  function isAnswered(q) {
+    if (q.options) {
+      return document.querySelectorAll("#options .option.active").length > 0;
+    } else if (q.input) {
+      var txt = document.querySelector("#options textarea");
+      return txt && txt.value.trim() !== "";
+    } else if (q.scale) {
+      return !!document.querySelector('.rating-scale input[type="radio"]:checked');
+    } else if (q.group) {
+      var answered = true;
+      q.subquestions.forEach(function(_, index) {
+        if (!document.querySelector(`input[name="group_${index}"]:checked`)) {
+          answered = false;
+        }
+      });
+      return answered;
+    }
+    return false;
+  }
+
+  function capturarResposta(q) {
+    var resposta;
+    if (q.options) {
+      if (q.multiple) {
+        // Coleta todas as opções ativas e as armazena em um array
+        let activeOptions = document.querySelectorAll("#options .option.active");
+        let responses = [];
+        activeOptions.forEach(function(option) {
+          var input = option.querySelector('input[type="text"]');
+          responses.push(input ? option.innerText + ": " + input.value : option.innerText);
+        });
+        resposta = responses;
+      } else {
+        var activeOption = document.querySelector("#options .option.active");
+        if (activeOption) {
+          var input = activeOption.querySelector('input[type="text"]');
+          resposta = input ? activeOption.innerText + ": " + input.value : activeOption.innerText;
+        }
+      }
+    } else if (q.input) {
+      resposta = document.querySelector("#options textarea").value.trim();
+    } else if (q.scale) {
+      resposta = document.querySelector('.rating-scale input[type="radio"]:checked').value;
+    } else if (q.group) {
+      resposta = {};
+      q.subquestions.forEach(function(sq, index) {
+        var selected = document.querySelector(`input[name="group_${index}"]:checked`);
+        resposta[sq.label] = selected ? selected.value : null;
+      });
+    }
+    respostas[q.question] = resposta;
+  }
+
+  function nextQuestion() {
+    var q = questionsFlow[currentQuestion];
+    if (!isAnswered(q)) {
+      document.getElementById("error-message").innerText = "Por favor, selecione ou preencha uma opção antes de continuar.";
+      return;
+    }
+    capturarResposta(q);
+
+    // Se estamos na primeira pergunta "Você já comprou um Fotolivro?"
+    if (currentQuestion === 0) {
+      var selectedOption = document.querySelector("#options .option.active");
+      if (selectedOption && selectedOption.innerText.includes("Não")) {
+        questionsFlow = questionsNao_Sim.slice();
+        currentQuestion = 1;
+        renderQuestion();
+        return;
+      } else {
+        questionsFlow = questionsSim.slice();
+        currentQuestion = 1;
+        renderQuestion();
+        return;
+      }
+    }
+
+    // Se a pergunta atual for "Você teria interesse em adquirir um Fotolivro?"
+    if (questionsFlow[currentQuestion].question.trim().toLowerCase().includes("você teria interesse em adquirir um")) {
+      var selectedOption = document.querySelector("#options .option.active");
+      if (selectedOption && selectedOption.innerText.trim().toLowerCase().includes("não")) {
+        questionsFlow = questionsNao_Nao.slice();
+        currentQuestion = 2;
+        renderQuestion();
+        return;
+      } else if (selectedOption && selectedOption.innerText.trim().toLowerCase().includes("sim")) {
+        questionsFlow = questionsNao_Sim.slice();
+        currentQuestion = 2;
+        renderQuestion();
+        return;
+      }
+    }
+
+    // Se estivermos na penúltima tela (pergunta de itens personalizados), envia os dados (sem redirecionar) e mostra a tela final
+    if (currentQuestion === questionsFlow.length - 2) {
+      enviarDadosSemRedirect();
+      currentQuestion++;
+      renderQuestion();
+      return;
+    }
+
+    if (currentQuestion < questionsFlow.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  }
+
+  // Nova função para enviar os dados sem redirecionar
+  function enviarDadosSemRedirect() {
+    // Deve ser alterado conforme o ambiente
+    fetch('https://', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(respostas)
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Dados enviados (sem redirecionamento):', result);
+    })
+    .catch(error => console.error('Erro ao enviar os dados:', error));
+  }
+
+  // Nova função para redirecionar na tela final
+  function redirectToOffers() {
+    window.location.href = "https://";
+  }
+
+  // Inicia o fluxo verificando a presença do email na URL
+  renderEmailScreen();
+</script>
+
+</body>
+</html>
